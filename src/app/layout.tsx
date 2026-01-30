@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script'; // Import Script for Analytics
+import Analytics from '../components/Analytics'; // We import the new file here
 import '../styles/index.css';
 
 export const viewport: Viewport = {
@@ -8,17 +8,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// --- YOUR SEO METADATA ---
+// --- SEO METADATA (Server Side - Stays Here) ---
 export const metadata: Metadata = {
   title: 'Pilot Logic Systems | Enterprise Automation Agency',
   description: 'We architect digital infrastructure for Logistics & Finance. Replace manual data entry with autonomous logic systems. Book your audit.',
   
-  // Google Search Console Verification
   verification: {
     google: "UzQkAKHfB0hShhY2KqhLQN7kTRUV47wMgC9U2_nZ1bk",
   },
 
-  // Social Media Previews
   openGraph: {
     title: 'Pilot Logic Systems | Enterprise Automation',
     description: 'We replace manual workflows with autonomous logic. Book your system audit.',
@@ -27,7 +25,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
 
-  // SEO Keywords
   keywords: [
     'Pilot Logic Systems', 'Automation Agency', 'Workflow Automation Consultant', 
     'Logistics Automation', '3PL Integration', 'Warehouse Management System',
@@ -37,7 +34,6 @@ export const metadata: Metadata = {
     'Healthcare Automation', 'Real Estate Automation'
   ],
 
-  // Your Favicon
   icons: {
     icon: [
       { url: '/assets/images/Favicon-1769758091653.png', type: 'image/png' }
@@ -45,7 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-// --- YOUR LAYOUT + ANALYTICS ---
+// --- ROOT LAYOUT ---
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,22 +50,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Google Analytics Script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-HW86B43Z6X"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-HW86B43Z6X');
-          `}
-        </Script>
-
-        {/* The Website Content */}
+        {/* We drop the Analytics component here */}
+        <Analytics />
+        
         {children}
       </body>
     </html>
